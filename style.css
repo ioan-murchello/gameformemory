@@ -52,8 +52,6 @@ body{
 .back-card,.front-card {
     display: block;
     position: absolute;
-    top: 0;
-    left: 0;
     backface-visibility: hidden;
 }
 
@@ -69,8 +67,6 @@ img{
 }
 
 .back-card{
-    top: 11px;
-    left: 25px;
     width: 80%;
     height: 80%;
     transform: rotateY(180deg);
@@ -78,8 +74,6 @@ img{
 
 @media (max-width: 420px){
     .back-card{
-        top: 25px;
-        left: 30px;
         width: 60%;
         height: 60%;
     }
