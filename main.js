@@ -2,6 +2,48 @@
 let hasFlipped = false;
 let boardLock = false;
 let first_card, second_card;
+let playground = document.querySelector('.playground');
+
+
+let havyStage = {
+    airplane : './icons/airplane.svg',
+    baseball : './icons/basebal.svg',
+    education : './icons/education.svg',
+    fork : './icons/fork.svg'
+}
+
+let k = Object.keys(havyStage);
+
+function makebody(attr){
+    return `
+    <div class="card_body" data-card=${attr}></div>`   
+}
+
+function makebackImg(src){
+    return `
+    <img class="back_card" alt=${src} src=${src}></img>`   
+}
+
+function makefrontImg(src){
+    return `
+    <img class="front_card" alt=${src} src=${src}></img>`   
+}
+
+function makeCards(num, obj){
+    let card_body,back_card,front_card;
+
+    for(let i = 0; i < num; i++){
+        card_body = makebody('hello');
+        
+        for(let k in obj){
+            back_card = makebackImg(obj[k]);
+            card_body.append(back_card);
+        }
+        playground.innerHTML += card_body;
+    }
+}
+
+makeCards(8, havyStage);
 
 let flipCard = (e) => {
     if(boardLock) return;
@@ -57,11 +99,11 @@ function resetBoard(){
     hasFlipped = boardLock = false;
     first_card = second_card = null;
 }
+
 let cards = document.querySelectorAll('.card_body');
     cards.forEach(card => {
         card.addEventListener('click', flipCard)
     
     let randomIndex = Math.floor(Math.random() * cards.length);
     card.style.order = randomIndex;
-    console.log(card.style.order)
     })

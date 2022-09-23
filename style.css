@@ -17,17 +17,10 @@ body{
     height: 500px;
     display: flex;
     justify-content: space-evenly;
-    display: flex;
     flex-flow: row wrap;
     row-gap: 3px;
-    margin: 15px;
+    margin: 50px;
     perspective: 1000px;
-}
-
-@media (max-width: 420px){
-    .playground{
-        flex: 0 1 auto;
-    }
 }
 
 .card_body {
