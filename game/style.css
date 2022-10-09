@@ -92,9 +92,9 @@ body{
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
-<<<<<<< HEAD:style.css
+  
     row-gap: 3px;
-<<<<<<< HEAD
+ 
     margin: 35px;
     perspective: 1000px;
 }
@@ -265,4 +265,9 @@ img{
 
 .show{
     display: flex;
+}
+
+.for_btn{
+    border: 3px solid black;
+    background-color: azure;
 }

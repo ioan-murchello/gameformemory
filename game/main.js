@@ -33,10 +33,24 @@ let fattr = 0, secattr = 0;
 
     if(target.classList.contains('blocks_style')){
         fattr = target.getAttribute('data-player');
+        document.querySelectorAll('.blocks_style').forEach(el => {
+            if(el.classList.contains('for_btn')){
+                el.classList.remove('for_btn') 
+            }else{
+                target.classList.add('for_btn')
+            }
+        })
     }
 
     if(target.classList.contains('sum')){
         secattr = target.getAttribute('data-card');
+        document.querySelectorAll('.sum').forEach(el => {
+            if(el.classList.contains('for_btn')){
+                el.classList.remove('for_btn') 
+            }else{
+                target.classList.add('for_btn')
+            }
+        })
     }
  })
 
