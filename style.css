@@ -20,12 +20,14 @@ body{
     display: flex;
     flex-flow: row wrap;
     row-gap: 3px;
-    margin: 15px;
+    margin: 35px;
     perspective: 1000px;
 }
 
 @media (max-width: 420px){
     .playground{
+        width: 400px;
+        height: 400px;
         flex: 0 1 auto;
     }
 }
@@ -45,22 +47,20 @@ body{
 }
 
 .card_body:active{
-    transform: scale(0.97);
+    transform: scale(0.94);
     transition: transform 0.8s;
 }
 
-.back-card,.front-card {
+.back-card, .front-card {
     display: block;
+    padding: 7px;
     position: absolute;
-    top: 0;
-    left: 0;
     backface-visibility: hidden;
 }
 
 img{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    
 }
 
 .front-card{
@@ -69,8 +69,6 @@ img{
 }
 
 .back-card{
-    top: 11px;
-    left: 25px;
     width: 80%;
     height: 80%;
     transform: rotateY(180deg);
@@ -78,10 +76,8 @@ img{
 
 @media (max-width: 420px){
     .back-card{
-        top: 25px;
-        left: 30px;
-        width: 60%;
-        height: 60%;
+        width: 70%;
+        height: 70%;
     }
 }
 
