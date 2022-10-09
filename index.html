@@ -8,8 +8,116 @@
     <title>MemGame</title>
 </head>
 <body>
+    <div class="game_wrapper">
+        
 
-    <div class="playground">
+        
+
+
+        
+    </div>
+
+    <div class="main_menu">
+        <div class="players">
+            <div data-player="1" class="blocks_style one_player">1 player</div>
+            <div data-player="2" class="blocks_style two_player">2 player</div>
+        </div>
+
+        <div class="game_cards">
+            <div data-card="12" class="sum first_section">12 cards</div>
+            <div data-card="16" class="sum second_section">16 cards</div>
+            <div data-card="20" class="sum third_section">20 cards</div>
+        </div>
+
+        <button id="start_btn" class="btn">start</button>
+    </div>
+    <!-- first play -->
+
+    <div class="playground hide">
+        <div class="card_body" data-card="airplane">
+            <img class="back-card" src="./icons/airplane.svg" alt="airplane">
+            <img class="front-card" src="./icons/sun.svg" alt="">
+        </div>
+        
+        <div class="card_body" data-card="airplane">
+            <img class="back-card" src="./icons/airplane.svg" alt="airplane">
+            <img class="front-card"  src="./icons/sun.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="baseball">
+            <img class="back-card" src="./icons/baseball.svg" alt="baseball">
+            <img class="front-card"  src="./icons/sun.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="baseball">
+            <img class="back-card" src="./icons/baseball.svg" alt="baseball">
+            <img class="front-card"  src="./icons/sun.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="education">
+            <img class="back-card" src="./icons/education.svg" alt="education">
+            <img class="front-card" src="./icons/sun.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="education">
+            <img class="back-card" src="./icons/education.svg" alt="education">
+            <img class="front-card" src="./icons/sun.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="fork" >
+            <img class="back-card" src="./icons/fork.svg" alt="fork">
+            <img class="front-card" src="./icons/sun.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="fork">
+            <img class="back-card" src="./icons/fork.svg" alt="fork">
+            <img class="front-card" src="./icons/sun.svg" alt="">
+        </div>
+    </div>
+
+    <!-- second play -->
+
+    <div class="playground hide">
+        <div class="card_body" data-card="anchor">
+            <img class="back-card" src="./icons/anchor.svg" alt="airplane">
+            <img class="front-card" src="./icons/front.svg" alt="">
+        </div>
+        
+        <div class="card_body" data-card="anchor">
+            <img class="back-card" src="./icons/anchor.svg" alt="airplane">
+            <img class="front-card"  src="./icons/front.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="camera">
+            <img class="back-card" src="./icons/camera.svg" alt="baseball">
+            <img class="front-card"  src="./icons/front.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="camera">
+            <img class="back-card" src="./icons/camera.svg" alt="baseball">
+            <img class="front-card"  src="./icons/front.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="copybook">
+            <img class="back-card" src="./icons/copybook.svg" alt="education">
+            <img class="front-card" src="./icons/front.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="copybook">
+            <img class="back-card" src="./icons/copybook.svg" alt="education">
+            <img class="front-card" src="./icons/front.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="cut" >
+            <img class="back-card" src="./icons/cut.svg" alt="fork">
+            <img class="front-card" src="./icons/front.svg" alt="">
+        </div>
+
+        <div class="card_body" data-card="cut">
+            <img class="back-card" src="./icons/cut.svg" alt="fork">
+            <img class="front-card" src="./icons/front.svg" alt="">
+        </div>
+
         <div class="card_body" data-card="airplane">
             <img class="back-card" src="./icons/airplane.svg" alt="airplane">
             <img class="front-card" src="./icons/front.svg" alt="ok">
@@ -50,6 +158,8 @@
             <img class="front-card" src="./icons/front.svg" alt="ok">
         </div>
     </div>
+   
+    
     
 <script src="main.js"></script>
 </body>
