@@ -92,9 +92,7 @@ body{
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
-  
     row-gap: 3px;
- 
     margin: 35px;
     perspective: 1000px;
 }
@@ -104,15 +102,12 @@ body{
         width: 400px;
         height: 400px;
         flex: 0 1 auto;
+        margin: 50px;
+        perspective: 1000px;
+        transition: all 0.7s ease;
+        z-index: 3;
     }
-=======
-    margin: 50px;
-=======
->>>>>>> 25c13b5854ae592c4e47357139770ca0d8b8cae3:game/style.css
-    perspective: 1000px;
-    transition: all 0.7s ease;
-    z-index: 3;
->>>>>>> 84afc9dffe70fe8798fbf803be15c173b0b8cc99
+ 
 }
 
 .playground :last-child{
@@ -219,35 +214,27 @@ img{
 }
 
 .back-card{
-<<<<<<< HEAD:style.css
-<<<<<<< HEAD
+ 
     width: 80%;
     height: 80%;
-=======
+ 
     width: 70%;
     height: 60%;
->>>>>>> 84afc9dffe70fe8798fbf803be15c173b0b8cc99
-=======
+ 
     width: 100%;
     height: 100%;
->>>>>>> 25c13b5854ae592c4e47357139770ca0d8b8cae3:game/style.css
+ 
     transform: rotateY(180deg);
 }
 
 @media (max-width: 420px){
     .back-card{
-<<<<<<< HEAD:style.css
-<<<<<<< HEAD
         width: 70%;
         height: 70%;
-=======
         width: 60%;
         height: 60%;
->>>>>>> 84afc9dffe70fe8798fbf803be15c173b0b8cc99
-=======
         width: 100%;
         height: 100%;
->>>>>>> 25c13b5854ae592c4e47357139770ca0d8b8cae3:game/style.css
     }
 }
 .card_body{
