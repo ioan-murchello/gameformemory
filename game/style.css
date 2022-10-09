@@ -9,6 +9,7 @@ body{
 }
 
 .game_wrapper{
+    position: relative;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -24,7 +25,6 @@ body{
     justify-content: flex-start;
     flex-direction: column;
     align-items: center;
-    border: 1px solid red;
     padding: 35px;
     transition: all 0.4s ease;
     z-index: 5;
@@ -50,12 +50,7 @@ body{
     border-radius: 15px;
     cursor: pointer;
 }
-.one_player {
-   
-}
-.two_player {
-   
-}
+
 .game_cards {
     width: 100%;
     height: 125px;
@@ -73,25 +68,31 @@ body{
     background-color: rgb(71, 188, 196);
     border-radius: 15px;
 }
-.first_section {
-}
-.second_section {
-}
-.third_section {
-}
+
 
 .btn{
     width: 125px;
     height: 125px;
     background-color: rgb(76, 76, 76);
     border-radius: 50%;
+    cursor: pointer;
 }
+
+.playground_wrapper{
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
 .playground{
     width: 500px;
-    height: 500px;
-    display: none;
+    height: 450px;
+    display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
+<<<<<<< HEAD:style.css
     row-gap: 3px;
 <<<<<<< HEAD
     margin: 35px;
@@ -106,11 +107,76 @@ body{
     }
 =======
     margin: 50px;
+=======
+>>>>>>> 25c13b5854ae592c4e47357139770ca0d8b8cae3:game/style.css
     perspective: 1000px;
     transition: all 0.7s ease;
     z-index: 3;
 >>>>>>> 84afc9dffe70fe8798fbf803be15c173b0b8cc99
 }
+
+.playground :last-child{
+    margin: 0 0 0 0;
+}
+
+.first_player_total, .second_player_total{
+    width: 80px;
+    height: 100%;
+    border: 1px solid green;
+    margin: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current{
+    width: 80px;
+    height: 80px;
+    background-color: #282649;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+    border: 5px solid yellowgreen;
+    font-size: 45px;
+}
+
+/* small_menu */
+
+.small_menu {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 325px;
+    height: 250px;
+    border-radius: 7px;
+    background-color: rgb(29, 57, 88);
+    margin: 0 auto;
+    z-index: 100;
+}
+.go_to_menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    height: 100px;
+    background-color: rgb(106, 50, 133);
+    margin: 15px;
+
+}
+.restart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    height: 100px;
+    background-color: rgb(106, 50, 133);
+    margin: 15px;
+}
+
 
 .card_body {
     display: flex;
@@ -120,6 +186,7 @@ body{
     height: 25%;
     background-color: #282649;
     position: relative;
+    margin: 0 0 3px 0;
     flex: 0 1 auto;
     border-radius: 8px;
     transition: transform 0.8s;
@@ -147,11 +214,12 @@ img{
 }
 
 .front-card{
-    width: 60%;
-    height: 60%;
+    width: 100%;
+    height: 100%;
 }
 
 .back-card{
+<<<<<<< HEAD:style.css
 <<<<<<< HEAD
     width: 80%;
     height: 80%;
@@ -159,11 +227,16 @@ img{
     width: 70%;
     height: 60%;
 >>>>>>> 84afc9dffe70fe8798fbf803be15c173b0b8cc99
+=======
+    width: 100%;
+    height: 100%;
+>>>>>>> 25c13b5854ae592c4e47357139770ca0d8b8cae3:game/style.css
     transform: rotateY(180deg);
 }
 
 @media (max-width: 420px){
     .back-card{
+<<<<<<< HEAD:style.css
 <<<<<<< HEAD
         width: 70%;
         height: 70%;
@@ -171,14 +244,25 @@ img{
         width: 60%;
         height: 60%;
 >>>>>>> 84afc9dffe70fe8798fbf803be15c173b0b8cc99
+=======
+        width: 100%;
+        height: 100%;
+>>>>>>> 25c13b5854ae592c4e47357139770ca0d8b8cae3:game/style.css
     }
 }
-
+.card_body{
+    z-index: 5;
+}
 .card_body.flip{
     transform: rotateY(-180deg);
 }
 
+
 .hide{
     opacity: 0;
-    z-index: 1;
+    /* z-index: 1; */
+}
+
+.show{
+    display: flex;
 }
