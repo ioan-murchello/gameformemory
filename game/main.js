@@ -1,10 +1,15 @@
 let hasFlipped = false;
 let boardLock = false;
+let isEqual;
 let total_curency = 0;
 let total_curency_two = 0;
+let firstSumAttribure = 0, secondSumAttribute = 0;
 let first_card, second_card;
 let playground_wrapper = document.querySelectorAll('.playground_wrapper');
-let playground = document.querySelectorAll('.playground');
+let inner_game_wrapper = document.querySelectorAll('.inner_game_wrapper');
+let playerss = document.querySelectorAll('.blocks_style');
+let cards_sum = document.querySelectorAll('.sum');
+let cardsss = document.querySelectorAll('.card_body');
 let game = document.querySelector('.main_menu');
 let game_wrapper = document.querySelector('.game_wrapper');
 let small_menu = document.querySelector('.small_menu');
@@ -19,69 +24,95 @@ let start_btn = document.querySelector('.btn');
 
 let arr = ['airplane','airplane','baseball','baseball','education','education','fork','fork'];
 
-// let havyStage = {
-//     airplane : './icons/airplane.svg',
-//     baseball : './icons/baseball.svg',
-//     education : './icons/education.svg',
-//     fork : './icons/fork.svg'
-// }
-
-let fattr = 0, secattr = 0;
-
  game.addEventListener('click', (event) => {
     let target = event.target;
 
     if(target.classList.contains('blocks_style')){
-        fattr = target.getAttribute('data-player');
-        document.querySelectorAll('.blocks_style').forEach(el => {
-            if(el.classList.contains('for_btn')){
-                el.classList.remove('for_btn') 
-            }else{
-                target.classList.add('for_btn')
-            }
-        })
+        firstSumAttribure = target.getAttribute('data-player');
+        toggler('.blocks_style', 'for_btn', target)
     }
 
     if(target.classList.contains('sum')){
-        secattr = target.getAttribute('data-card');
-        document.querySelectorAll('.sum').forEach(el => {
-            if(el.classList.contains('for_btn')){
-                el.classList.remove('for_btn') 
-            }else{
-                target.classList.add('for_btn')
-            }
-        })
+        secondSumAttribute = target.getAttribute('data-card');
+        toggler('.sum', 'for_btn', target)
     }
+
+    
  })
 
  start_btn.addEventListener('click', function(){
-    startuem();
-    if(fattr == 1 && secattr== 8){
-        game.classList.add('hide');
+
+    start_btn.classList.add('for_btn');
+
+    setTimeout(function(){
+
+    if(firstSumAttribure == 1 && secondSumAttribute == 8){
+        // game.classList.add('opac');
+        game.style.opacity = 0;
         game_wrapper.removeChild(game);
+
+        
+
         setTimeout(function(){
-            game_wrapper.append(playground_wrapper[0]);
-            playground_wrapper[0].classList.remove('hide');
-            playground_wrapper[0].classList.add('show');
-            }, 800)
+            game_wrapper.append(inner_game_wrapper[0]);
+            inner_game_wrapper[0].classList.remove('hide');
+            inner_game_wrapper[0].classList.add('show');
+
+            start_btn.classList.remove('for_btn');
+
+            }, 700)
     }
 
-    if(fattr == 1 && secattr == 16){
-        game.classList.add('hide');
+    if(firstSumAttribure == 1 && secondSumAttribute == 16){
+        // game.classList.add('opac');
+        
         game_wrapper.removeChild(game);
 
-        playground_wrapper[1].querySelectorAll('.card_body').forEach(el => {
+        inner_game_wrapper[1].querySelectorAll('.card_body').forEach(el => {
             el.classList.add('dwa');
         });
 
+        
+
         setTimeout(function(){
-            game_wrapper.append(playground_wrapper[1]);
-            playground_wrapper[1].classList.remove('hide');
-            playground_wrapper[1].classList.add('show');
-            }, 800)    
+            game_wrapper.append(inner_game_wrapper[1]);
+            inner_game_wrapper[1].classList.remove('hide');
+            inner_game_wrapper[1].classList.add('show');
+
+            start_btn.classList.remove('for_btn');
+
+            }, 700)    
     }
+
+    if(game.classList.contains('hide')){
+        console.log('okkk')
+        playerss.forEach(el => {
+            el.classList.remove('for_btn');
+        })
+        cards_sum.forEach(el => {
+            el.classList.remove('for_btn');
+        }) ;
+    }
+
+    startuem();
+
+    },500)
+
+    
+
+    
+    
 })
 
+    function toggler(el, cl, tar){
+        document.querySelectorAll(el).forEach(el => {
+            if(el.classList.contains(cl)){
+                el.classList.remove(cl) 
+            }else{
+                tar.classList.add(cl)
+            }
+        })
+    }
 // --------------------------------------------------------------------
 
     function flipCard(e){
@@ -108,29 +139,42 @@ let fattr = 0, secattr = 0;
         checkForMatch()
     }
 }
-let isEqual;
+
+
+
 function checkForMatch(){
     isEqual = first_card.getAttribute('data-card') === second_card.getAttribute('data-card');
 
     if(isEqual){
+
         total_curency++;
         total_curency_two++;
+        console.log(total_curency, total_curency_two)
+
+        disableCards()
+
+    }
+    else{
+
+        flippedCards();
+
     }
     
-    isEqual ? disableCards() : flippedCards();
 
-    if(fattr == 1 && secattr == 8 && total_curency == 4){
+    if(firstSumAttribure == 1 && secondSumAttribute == 8 && total_curency == 4){
         setTimeout(() => {
             game_wrapper.append(small_menu);
             small_menu.classList.add('show');
+            small_menu.classList.remove('hide');
         }, 1000)
         
     }
 
-    if(fattr == 1 && secattr == 16 && total_curency_two == 8){
+    if(firstSumAttribure == 1 && secondSumAttribute == 16 && total_curency_two == 8){
         setTimeout(() => {
             game_wrapper.append(small_menu);
             small_menu.classList.add('show');
+            small_menu.classList.remove('hide');
         }, 1000)
         
     }
@@ -171,27 +215,103 @@ function startuem(){
     card.style.order = randomIndex;
     })
 }
+ 
 
-function removeFlipClass(){
-    let all_cards = document.querySelectorAll('.card_body');
-        all_cards.forEach(el => {
-            el.classList.remove('flip');
-            el.removeEventListener('click', flipCard);
-        })
+function removeFlipClass(firstcl, cl){
+
+        if(firstcl.length > 1){
+            firstcl.forEach(el => {
+                el.classList.remove(cl);
+                el.removeEventListener('click', flipCard);
+            })
+        }
+        else{
+            firstcl.classList.remove(cl);
+        }
+        
 }
 
-restart.addEventListener('click', () => {
+function restarter(){
 
-    small_menu.classList.add('hide');
-    
-    removeFlipClass();
-    
-     
+    if(total_curency == 4){
+        removeFlipClass(cardsss, 'flip');
+        small_menu.classList.remove('show');
+        small_menu.classList.add('hide');
+        total_curency = 0;
+        total_curency_two = 0;
+    }
+
+    if(total_curency_two == 8){
+        removeFlipClass(cardsss, 'flip');
+        small_menu.classList.remove('show');
+        small_menu.classList.add('hide');
+        total_curency = 0;
+        total_curency_two = 0;
+    }
+   
     hasFlipped = boardLock = false;
     first_card = second_card = null;
-    total_curency = 0;
     
-     
+    hasFlipped = false;
+    boardLock = false;
+    isEqual = null;
+    
     startuem();
+}
+
+// if(game.classList.contains('hide')){
+//     console.log('conatins');
+
+//     document.querySelectorAll('.blocks_style').forEach(el => {
+//         if(el.classList.contains('for_btn')){
+//             el.classList.remove('for_btn');
+//         }
+
+//     document.querySelectorAll('.sum').forEach(el => {
+//         if(el.classList.contains('for_btn')){
+//             el.classList.remove('for_btn');
+//         }
+//     });
+// });
+
+
+
+    
+// }
+
+restart.addEventListener('click', () => {
+    
+    small_menu.classList.add('show');
+
+    restarter();
+    
 
 })
+
+go_to_menu.addEventListener('click', function(){
+    hasFlipped = boardLock = false;
+    first_card = second_card = null;
+    
+    hasFlipped = false;
+    boardLock = false;
+    isEqual = null;
+
+    small_menu.classList.remove('show');
+    small_menu.classList.add('hide');
+
+        inner_game_wrapper.forEach(el => {
+            el.classList.remove('show');
+            el.classList.add('hide');
+    })
+
+    game_wrapper.append(game)
+    game.classList.add('show');
+    game.classList.remove('hide');
+
+    restarter();
+    
+})
+ 
+
+
+ 
