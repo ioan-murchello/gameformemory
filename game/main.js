@@ -5,6 +5,7 @@ let total_curency = 0;
 let total_curency_two = 0;
 let firstSumAttribure = 0, secondSumAttribute = 0;
 let first_card, second_card;
+let return_to_main_menu = document.querySelector('.return_to_front');
 
 let first_player_current_sum = 0;
 let second_player_current_sum = 0;
@@ -12,6 +13,7 @@ let summer = 0;
 let playground_wrapper = document.querySelectorAll('.playground_wrapper');
 let inner_game_wrapper = document.querySelectorAll('.inner_game_wrapper');
 let playerss = document.querySelectorAll('.blocks_style');
+
 let cards_sum = document.querySelectorAll('.sum');
 let cardsss = document.querySelectorAll('.card_body');
 let game = document.querySelector('.main_menu');
@@ -27,14 +29,10 @@ let first_curr = document.querySelector('.first_curr');
 let sec_curr = document.querySelector('.sec_curr');
     sec_curr.textContent = second_player_current_sum;
 
-let checkbox_input = document.querySelector('.inpt');
-let checked_unchecked = checkbox_input.checked;
-  
-console.log(checked_unchecked)
 
 game_wrapper.append(game);
 
-let players = document.querySelector('.players');
+// let players = document.querySelectorAll('.players');
 let sum_of_cards = document.querySelector('.game_cards');
 let start_btn = document.querySelector('.btn');
 
@@ -94,6 +92,35 @@ let arr = ['airplane','airplane','baseball','baseball','education','education','
             el.classList.add('dwa');
         });
 
+        document.querySelector('.for_currency').classList.add('hide');
+        // document.querySelector('.back_to').classList.add('hide');
+
+        
+
+        setTimeout(function(){
+            game_wrapper.append(inner_game_wrapper[1]);
+            inner_game_wrapper[1].classList.remove('hide');
+            inner_game_wrapper[1].classList.add('show');
+
+            start_btn.classList.remove('for_btn');
+
+            }, 1000)    
+    }
+
+
+    if(firstSumAttribure == 2 && secondSumAttribute == 16){
+
+        game.classList.add('opac');
+        setTimeout(function(){ 
+            game_wrapper.removeChild(game); 
+            game.classList.remove('opac');
+        }, 400)
+        
+
+        inner_game_wrapper[1].querySelectorAll('.card_body').forEach(el => {
+            el.classList.add('dwa');
+        });
+
         
 
         setTimeout(function(){
@@ -107,10 +134,9 @@ let arr = ['airplane','airplane','baseball','baseball','education','education','
     }
 
     if(game.classList.contains('hide')){
-        console.log('okkk')
         playerss.forEach(el => {
             el.classList.remove('for_btn');
-        })
+        }) 
         cards_sum.forEach(el => {
             el.classList.remove('for_btn');
         }) ;
@@ -123,8 +149,9 @@ let arr = ['airplane','airplane','baseball','baseball','education','education','
 
     function toggler(el, cl, tar){
         document.querySelectorAll(el).forEach(el => {
-            if(el.classList.contains(cl)){
-                el.classList.remove(cl) 
+            if(el.classList.contains(cl) || tar.classList.contains(cl)){
+                el.classList.remove(cl)
+                tar.classList.add(cl) 
             }else{
                 tar.classList.add(cl)
             }
@@ -138,6 +165,8 @@ let arr = ['airplane','airplane','baseball','baseball','education','education','
 
     let target = e.target.parentElement;
         target.classList.add('flip')
+
+       
  
     // false double click at one card
     if(target === first_card) return
@@ -153,19 +182,19 @@ let arr = ['airplane','airplane','baseball','baseball','education','education','
         second_card = target;
         
         //checkForMath two cards
-        checkForMatch(checked_unchecked)
+        checkForMatch()
     }
 }
 
-function checkForMatch(chek){
+function checkForMatch(){
     isEqual = first_card.getAttribute('data-card') === second_card.getAttribute('data-card');
     
     if(isEqual){
 
         total_curency++;
         total_curency_two++;
-
-        disableCards();
+         
+        disableCards(total_curency, total_curency_two);
     }
     else{
         
@@ -184,7 +213,7 @@ function checkForMatch(chek){
         
     }
 
-    if(firstSumAttribure == 1 && secondSumAttribute == 16 && total_curency_two == 8){
+    if((firstSumAttribure == 1 || 2) && secondSumAttribute == 16 && total_curency_two == 8){
         setTimeout(() => {
             game_wrapper.append(small_menu);
             small_menu.classList.add('opacityout','show');
@@ -214,10 +243,13 @@ function disableCards(){
             first_player_current_sum++;
             first_curr.textContent = first_player_current_sum;
         }
+
+        
          
 }
 
 function flippedCards(){
+     
     boardLock = true;
     setTimeout(() => {
         first_card.classList.remove('flip');
@@ -249,13 +281,17 @@ function resetBoard(){
 }
 
 function gameStart(){
+    
     let cards = document.querySelectorAll('.card_body');
     cards.forEach(card => {
         card.addEventListener('click', flipCard)
     
     let randomIndex = Math.floor(Math.random() * cards.length);
     card.style.order = randomIndex;
+
     })
+
+   
 }
  
 
@@ -292,15 +328,13 @@ function restarter(){
         total_curency_two = 0;
         first_player_current_sum = 0;
         second_player_current_sum = 0;
-        first_curr.textContent = first_player_current_sum = 0;
+        first_curr.textContent = first_player_current_sum;
         sec_curr.textContent = second_player_current_sum;
     }
    
     hasFlipped = boardLock = false;
     first_card = second_card = null;
     
-    hasFlipped = false;
-    boardLock = false;
     isEqual = null;
     
     setTimeout(()=>{ gameStart(); }, 300)
@@ -326,6 +360,11 @@ go_to_menu.addEventListener('click', function(){
     boardLock = false;
     isEqual = null;
 
+    first_player_current_sum = 0;
+    second_player_current_sum = 0;
+    first_curr.textContent = first_player_current_sum;
+    sec_curr.textContent = second_player_current_sum;
+
     small_menu.classList.remove('show');
     small_menu.classList.add('hide');
 
@@ -345,13 +384,43 @@ go_to_menu.addEventListener('click', function(){
 })
  
  
+return_to_main_menu.addEventListener('click', function(){
+    removeFlipClass(cardsss, 'flip');
 
-function saveCheckbox(){
+    setTimeout(function(){
+    hasFlipped = boardLock = false;
+    first_card = second_card = null;
+    
+    hasFlipped = false;
+    boardLock = false;
+    isEqual = null;
+
+    first_player_current_sum = 0;
+    second_player_current_sum = 0;
+    first_curr.textContent = first_player_current_sum;
+    sec_curr.textContent = second_player_current_sum;
+
+    small_menu.classList.remove('show');
+    small_menu.classList.add('hide');
+    
+        inner_game_wrapper.forEach(el => {
+            el.classList.remove('show');
+            el.classList.add('hide');
+    })
+
+    game_wrapper.append(game)
+    game.classList.add('opacityout','show');
+    game.classList.remove('opacity','hide');
+
+    setTimeout(()=>{  game.classList.remove('opacity','opacityout') }, 300)
+
+    }, 600);
+
+    restarter();
+})
  
- 
-    if(checkbox_input.checked == true){
-        checkbox_input.checked = false;
-     }
-   }
- 
-   checkbox_input.addEventListener('change', saveCheckbox)
+
+   
+
+
+   
