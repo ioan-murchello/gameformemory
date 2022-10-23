@@ -202,16 +202,19 @@ body{
 }
 
 .return_to_front{
-    width: 80px;
-    height: 80px;
+    width: 160px;
+    height: 75px;
+    font-size: 35px;
+    text-transform: capitalize;
+    font-weight: 900;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+    border-radius: 10%;
+    -webkit-border-radius: 10%;
+    -moz-border-radius: 10%;
+    -ms-border-radius: 10%;
+    -o-border-radius: 10%;
     background-color: rgb(186, 172, 93);
 }
 

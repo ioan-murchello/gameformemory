@@ -21,6 +21,9 @@ let game_wrapper = document.querySelector('.game_wrapper');
 let small_menu = document.querySelector('.small_menu');
 let restart = small_menu.querySelector('.restart');
 let go_to_menu = small_menu.querySelector('.go_to_menu');
+let back_to_front = document.querySelectorAll('.return_to_front');
+    
+ 
 
 let first_curr = document.querySelector('.first_curr');
     first_curr.textContent = first_player_current_sum;
@@ -32,11 +35,8 @@ let sec_curr = document.querySelector('.sec_curr');
 
 game_wrapper.append(game);
 
-// let players = document.querySelectorAll('.players');
 let sum_of_cards = document.querySelector('.game_cards');
 let start_btn = document.querySelector('.btn');
-
-let arr = ['airplane','airplane','baseball','baseball','education','education','fork','fork'];
 
  game.addEventListener('click', (event) => {
     let target = event.target;
@@ -50,8 +50,6 @@ let arr = ['airplane','airplane','baseball','baseball','education','education','
         secondSumAttribute = target.getAttribute('data-card');
         toggler('.sum', 'for_btn', target)
     }
-
-    
  })
 
  start_btn.addEventListener('click', function(){
@@ -77,6 +75,8 @@ let arr = ['airplane','airplane','baseball','baseball','education','education','
             start_btn.classList.remove('for_btn');
 
             }, 1000)
+
+            
     }
 
     if(firstSumAttribure == 1 && secondSumAttribute == 16){
@@ -93,9 +93,6 @@ let arr = ['airplane','airplane','baseball','baseball','education','education','
         });
 
         document.querySelector('.for_currency').classList.add('hide');
-        // document.querySelector('.back_to').classList.add('hide');
-
-        
 
         setTimeout(function(){
             game_wrapper.append(inner_game_wrapper[1]);
@@ -105,17 +102,20 @@ let arr = ['airplane','airplane','baseball','baseball','education','education','
             start_btn.classList.remove('for_btn');
 
             }, 1000)    
+
+             
     }
 
 
     if(firstSumAttribure == 2 && secondSumAttribute == 16){
-
+        console.log( '2', '16')
         game.classList.add('opac');
         setTimeout(function(){ 
             game_wrapper.removeChild(game); 
             game.classList.remove('opac');
-        }, 400)
-        
+        }, 400);
+
+        document.querySelector('.for_currency').classList.remove('hide');
 
         inner_game_wrapper[1].querySelectorAll('.card_body').forEach(el => {
             el.classList.add('dwa');
@@ -132,6 +132,7 @@ let arr = ['airplane','airplane','baseball','baseball','education','education','
 
             }, 1000)    
     }
+     
 
     if(game.classList.contains('hide')){
         playerss.forEach(el => {
@@ -193,7 +194,7 @@ function checkForMatch(){
 
         total_curency++;
         total_curency_two++;
-         
+    
         disableCards(total_curency, total_curency_two);
     }
     else{
@@ -317,6 +318,11 @@ function restarter(){
         small_menu.classList.add('hide');
         total_curency = 0;
         total_curency_two = 0;
+        first_player_current_sum = 0;
+        second_player_current_sum = 0;
+        first_curr.textContent = first_player_current_sum;
+        sec_curr.textContent = second_player_current_sum;
+        
        
     }
 
@@ -334,8 +340,14 @@ function restarter(){
    
     hasFlipped = boardLock = false;
     first_card = second_card = null;
+
+    firstSumAttribure = firstSumAttribure;
+    secondSumAttribute = secondSumAttribute;
     
     isEqual = null;
+
+    total_curency = 0;
+    total_curency_two = 0;
     
     setTimeout(()=>{ gameStart(); }, 300)
     
@@ -359,6 +371,8 @@ go_to_menu.addEventListener('click', function(){
     hasFlipped = false;
     boardLock = false;
     isEqual = null;
+    total_curency = 0;
+    total_curency_two = 0;
 
     first_player_current_sum = 0;
     second_player_current_sum = 0;
@@ -379,24 +393,26 @@ go_to_menu.addEventListener('click', function(){
 
     setTimeout(()=>{  game.classList.remove('opacity','opacityout') }, 300)
 
-    restarter();
+   
     
 })
  
- 
-return_to_main_menu.addEventListener('click', function(){
+back_to_front.forEach(el => el.addEventListener('click', function(){
     removeFlipClass(cardsss, 'flip');
 
     setTimeout(function(){
+
     hasFlipped = boardLock = false;
     first_card = second_card = null;
+
+    total_curency = 0;
+    total_curency_two = 0;
     
-    hasFlipped = false;
-    boardLock = false;
     isEqual = null;
 
     first_player_current_sum = 0;
     second_player_current_sum = 0;
+
     first_curr.textContent = first_player_current_sum;
     sec_curr.textContent = second_player_current_sum;
 
@@ -416,11 +432,8 @@ return_to_main_menu.addEventListener('click', function(){
 
     }, 600);
 
-    restarter();
-})
- 
-
-   
+     
+     }))
 
 
    
