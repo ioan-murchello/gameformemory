@@ -59,7 +59,7 @@ let start_btn = document.querySelector('.btn');
     setTimeout(function(){
 
     if(firstSumAttribure == 1 && secondSumAttribute == 8){
-
+        // document.querySelector('.playground').style.width = '400px';
         game.classList.add('opac');
 
         setTimeout(function(){ 
@@ -258,7 +258,7 @@ function flippedCards(){
 
     resetBoard()
 
-    }, 1500)
+    }, 1000)
 }
 
 function resetBoard(){
@@ -322,6 +322,14 @@ function restarter(){
         second_player_current_sum = 0;
         first_curr.textContent = first_player_current_sum;
         sec_curr.textContent = second_player_current_sum;
+
+        hasFlipped = boardLock = false;
+        first_card = second_card = null;
+    
+        firstSumAttribure = firstSumAttribure;
+        secondSumAttribute = secondSumAttribute;
+        
+        isEqual = null;
         
        
     }
@@ -357,14 +365,14 @@ function restarter(){
 restart.addEventListener('click', () => {
     
     small_menu.classList.add('show');
-
+    removeFlipClass(cardsss, 'flip');
     restarter();
     
 
 })
 
 go_to_menu.addEventListener('click', function(){
-
+    removeFlipClass(cardsss, 'flip');
     hasFlipped = boardLock = false;
     first_card = second_card = null;
     
@@ -393,7 +401,7 @@ go_to_menu.addEventListener('click', function(){
 
     setTimeout(()=>{  game.classList.remove('opacity','opacityout') }, 300)
 
-   
+    restarter();
     
 })
  
@@ -432,6 +440,7 @@ back_to_front.forEach(el => el.addEventListener('click', function(){
 
     }, 600);
 
+    restarter();
      
      }))
 
